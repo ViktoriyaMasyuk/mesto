@@ -6,6 +6,11 @@
     justify-content: space-between;
     align-items: center;
 }
+@media screen and (max-width: 920px) {
+  .profile {
+    width: calc(100% - 38px);
+   }
+ }
 @media screen and (max-width: 768px) {
     .profile {
       width: calc(100% - 36px);

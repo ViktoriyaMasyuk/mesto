@@ -2,7 +2,8 @@
     width: 22px;
     height: 19px;
     background-image: url(../../../images/Vector-\(Stroke\)heart.png);
-    background-size: 22px 19px;
+    background-size: 20px 18px;
     background-repeat: no-repeat;
+    object-fit: cover;
     border: 0;
 }

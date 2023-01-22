@@ -3,9 +3,14 @@
     margin: 0px auto;
     padding: 45px 0px 36px 0px;
 }
+@media screen and (max-width: 920px) {
+  .header {
+    width: calc(100% - 36px);
+   }
+ }
 @media screen and (max-width: 768px) {
     .header {
-      width: cacl(100% - 36px);
+      width: calc(100% - 36px);
       padding: 31px 0px 38px 0px;
      }
    }
