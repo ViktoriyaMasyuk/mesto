@@ -18,3 +18,16 @@
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__save/form__save.css);
+@import url(../blocks/form/__name/form__name.css);
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__name/card__name.css);
+@import url(../blocks/card/__like/card__like.css);
+@import url(../blocks/card/__image/card__image.css);
