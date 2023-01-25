@@ -12,4 +12,12 @@
     right: 50%;
     margin-right: -247px;
     margin-top: -32px;
+    z-index: 6;
+    cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+    .popup__close {
+        top: 275px;
+        margin-right: -147px;
+     }
 }

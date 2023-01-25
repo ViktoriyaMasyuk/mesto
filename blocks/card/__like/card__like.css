@@ -6,4 +6,14 @@
     background-repeat: no-repeat;
     object-fit: cover;
     border: 0;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 1s linear 0.1s;
+}
+.card__like:hover {
+    opacity: 0.5;
+}
+.card__like:active {
+    background-image: url(../../../images/Union.png);
+    opacity: 1;
 }

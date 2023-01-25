@@ -8,3 +8,9 @@
     padding-right: 36px;
     box-sizing: border-box;
 }
+@media screen and (max-width: 768px) {
+    .form {
+        padding-left: 10px;
+        padding-right: 10px;
+     }
+}

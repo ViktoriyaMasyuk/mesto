@@ -8,17 +8,17 @@
     position: absolute;
     top: 195px;
     right: 50%;
-    margin-right; -215px;
+    margin-right: -215px;
     left: 50%;
     margin-left: -215px;
 }
 @media screen and (max-width: 768px) {
     .popup__container {
         width: 230px;
-        height: 150px;
-        top: 195px;
+        height: 200px;
+        top: 275px;
         right: 50%;
-        margin-right; -115px;
+        margin-right: -115px;
         left: 50%;
         margin-left: -115px;
      }

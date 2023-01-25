@@ -1,10 +1,14 @@
 .form__save {
     width: 358px;
     height: 50px;
-    left: 461px;
-    top: 438px;
     background: #000000;
     border-radius: 2px;
     color: white;
     margin: 48px auto 37px auto;
+}
+@media screen and (max-width: 768px) {
+    .form__save {
+        width: 210px;
+        margin: 20px auto 27px auto;
+     }
 }
