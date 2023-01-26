@@ -11,9 +11,9 @@
 }
 @media screen and (max-width: 768px) {
     .form__profession {
-        min-width: 210px;
-        font-size: 10px;
-        line-height: 13px;
-        margin: 10px auto 10px auto;
+        max-width: 238px;
+        font-size: 14px;
+        line-height: 17px;
+        margin: 0px auto;
      }
 }

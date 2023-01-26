@@ -11,7 +11,7 @@ function hidePopupForm () {
     popup.classList.add('popup_opened'); 
 }
 
-let closeFormButton = document.querySelector('.popup__close');
+let closeFormButton = document.querySelector('.form__close');
 closeFormButton.addEventListener('click', hidePopupForm); 
 
 
