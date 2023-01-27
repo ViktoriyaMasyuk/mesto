@@ -13,69 +13,59 @@
 <body>
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/Vector-3logo.png" alt="Логотип социальной сети Mesto">
-            <img class="header__line" src="./images/Line.png" alt="линия разделения">
+            <img class="header__logo" src="./images/Vector.svg" alt="Логотип социальной сети Mesto">
         </header>
         <main>
             <section class="profile">
                     <div class="profile__info">
-                        <img class="profile__avatar" src="./images/image.png">
+                        <img class="profile__avatar" src="./images/image.png" alt="Фото профиля">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-button link"></button>
-                        <h2 class="profile__subtitle">Исследователь океана</h2>
+                        <button class="profile__edit-button button-hover" type="button"></button>
+                        <p class="profile__subtitle">Исследователь океана</p>
                     </div>
-                    <button class="profile__add-button">+</button>
-            </section>
-            <section class="popup popup_opened">
-                <form class="popup__container form">
-                    <button class="form__close link"></button>
-                    <h2 class="form__title">Редактировать профиль</h2>
-                    <input class="form__name" name="name" type="text" size="25" maxlength="30" value="Жак-Ив Кусто" />
-                    <input class="form__profession" name="profession" type="text" size="35" maxlength="45" value="Исследователь океана" />
-                    <input class="form__save link" name="save" type="submit" value="Сохранить" />
-                </form>
+                    <button class="profile__add-button" type="button"></button>
             </section>
             <section class="elements">
                 <article class="card">
                     <img class="card__image" src="./images/kirill-pershin-1088404-unsplash-2.png" alt="Фото Карачаевска">
                     <div class="card__name">
                         <h2 class="card__title">Карачаево-Черкессия</h2>
-                        <button class="card__like"></button>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
                 <article class="card">
                     <img class="card__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Фото Эльбруса">
                     <div class="card__name">
                         <h2 class="card__title">Гора Эльбрус</h2>
-                        <button class="card__like"></button>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
                 <article class="card">
                     <img class="card__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Фото Домбая">
                     <div class="card__name">
                         <h2 class="card__title">Домбай</h2>
-                        <button class="card__like"></button>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
                 <article class="card">
                     <img class="card__image" src="./images/1(12).png" alt="Фото Байкала">
                     <div class="card__name">
                         <h2 class="card__title">Байкал</h2>
-                        <button class="card__like"></button>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
                 <article class="card">
                     <img class="card__image" src="./images/caption.jpeg" alt="Фото Карелии">
                     <div class="card__name">
                         <h2 class="card__title">Карелия</h2>
-                        <button class="card__like"></button>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
                 <article class="card">
-                    <img class="card__image" src="./images/Multinskie ozera.jpeg" alt="Фото Алтая">
+                    <img class="card__image" src="./images/Multinskie-ozera.jpeg" alt="Фото Алтая">
                     <div class="card__name">
                         <h2 class="card__title">Алтай</h2>
-                        <button class="card__like"></button>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
             </section>
@@ -83,6 +73,17 @@
         <footer class="footer">
             <p>© 2020 Mesto Russia</p>
         </footer>
+        <div class="popup">
+            <div class="popup__container">
+               <form class="form" method="get" name="profile-info">
+                   <button class="form__close button-hover" type="button"></button>
+                   <h2 class="form__title">Редактировать профиль</h2>
+                   <input class="form__personal-info form__personal-info_name" name="name" type="text" size="15" maxlength="25" value="Жак-Ив Кусто">
+                   <input class="form__personal-info form__personal-info_job" name="profession" type="text" size="25" maxlength="28" value="Исследователь океана">
+                   <button class="form__save button-hover" type="submit">Сохранить</button>
+               </form>
+            </div>
+        </div>
     </div>
     <script src="./scripts/script.js"></script>
 </body>
