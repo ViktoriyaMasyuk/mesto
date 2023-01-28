@@ -20,6 +20,7 @@
   .profile__add-button {
     margin: 32px auto 0 auto;
     width: 282px;
+    background-image: url(../../../images/plusmobile.svg);
     align-self: center;
   }
 }
