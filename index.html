@@ -26,48 +26,16 @@
                     <button class="profile__add-button" type="button"></button>
             </section>
             <section class="elements">
-                <article class="card">
-                    <img class="card__image" src="./images/kirill-pershin-1088404-unsplash-2.png" alt="Фото Карачаевска">
-                    <div class="card__name">
-                        <h2 class="card__title">Карачаево-Черкессия</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="card__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Фото Эльбруса">
-                    <div class="card__name">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="card__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Фото Домбая">
-                    <div class="card__name">
-                        <h2 class="card__title">Домбай</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="card__image" src="./images/1(12).png" alt="Фото Байкала">
-                    <div class="card__name">
-                        <h2 class="card__title">Байкал</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="card__image" src="./images/caption.jpeg" alt="Фото Карелии">
-                    <div class="card__name">
-                        <h2 class="card__title">Карелия</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img class="card__image" src="./images/Multinskie-ozera.jpeg" alt="Фото Алтая">
-                    <div class="card__name">
-                        <h2 class="card__title">Алтай</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
+                <template id="card">
+                    <article class="card">
+                        <img class="card__image" src="" alt="Фото посещенного места">
+                        <div class="card__name">
+                            <h2 class="card__title"></h2>
+                            <button class="card__like" type="button"></button>
+                        </div>
+                    </article>
+                </template>
+                
             </section>
         </main>
         <footer class="footer">
@@ -82,6 +50,17 @@
                    <input class="form__personal-info form__personal-info_user_job" name="profession" type="text" size="25" maxlength="28" value="Исследователь океана">
                    <button class="form__save" type="submit">Сохранить</button>
                </form>
+            </div>
+        </div>
+        <div class="popup popup__place">
+            <div class="popup__container">
+                <form class="form form__place" method="get" name="place-info">
+                    <button class="form__close button-hover place__close" type="button"></button>
+                    <h2 class="form__title">Новое место</h2>
+                    <input class="form__place-info form__info_place_name" name="name" type="text" size="15" maxlength="25" value="Название">
+                    <input class="form__place-info form__info_place_link" name="link" type="text" size="25" maxlength="150" value="Сcылка на картинку">
+                    <button class="form__save" type="submit">Создать</button>
+                </form>
             </div>
         </div>
     </div>

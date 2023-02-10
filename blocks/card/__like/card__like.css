@@ -15,7 +15,7 @@
 .card__like:hover {
     opacity: 0.5;
 }
-.card__like:active {
+card__like:active {
     background-image: url(../../../images/Union.svg);
     opacity: 1;
 }

@@ -31,3 +31,6 @@
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/button-hover/button-hover.css);
+@import url(../blocks/form/__place-info/form__place-info.css);
+@import url(../blocks/card/__like/_active/card__like_active.css);
+
