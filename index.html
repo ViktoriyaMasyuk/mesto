@@ -28,6 +28,7 @@
             <section class="elements">
                 <template id="card">
                     <article class="card">
+                        <button class="card__delete button-hover" type="button"></button>
                         <img class="card__image" src="" alt="Фото посещенного места">
                         <div class="card__name">
                             <h2 class="card__title"></h2>
@@ -35,7 +36,6 @@
                         </div>
                     </article>
                 </template>
-                
             </section>
         </main>
         <footer class="footer">
@@ -57,11 +57,18 @@
                 <form class="form form__place" method="get" name="place-info">
                     <button class="form__close button-hover place__close" type="button"></button>
                     <h2 class="form__title">Новое место</h2>
-                    <input class="form__place-info form__info_place_name" name="name" type="text" size="15" maxlength="25" value="Название">
-                    <input class="form__place-info form__info_place_link" name="link" type="text" size="25" maxlength="150" value="Сcылка на картинку">
+                    <input class="form__place-info form__info_place_name" name="name" type="text" size="15" maxlength="25" placeholder="Название" value="">
+                    <input class="form__place-info form__info_place_link" name="link" type="text" size="25" maxlength="150" placeholder="Сcылка на картинку" value="">
                     <button class="form__save" type="submit">Создать</button>
                 </form>
             </div>
+        </div>
+        <div class="popup popup__image">
+            <article class="image-card">
+                <button class="image-card__close button-hover" type="button"></button>
+                <img class="image-card__photo" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="Фото посещенного места">
+                <h2 class="image-card__title">Байкал</h2>
+            </article>
         </div>
     </div>
     <script src="./scripts/script.js"></script>

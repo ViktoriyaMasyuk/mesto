@@ -63,6 +63,13 @@ const initialCards = [
 //настраиваем добавление карточек, ищем temnlate и сецию карточек
 const elements = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card').content;
+//функции для popup-place
+const popupPlace = document.querySelector('.popup__place');
+const namePlaceInput = document.querySelector('.form__info_place_name');
+const linkPlaceInput = document.querySelector('.form__info_place_link');
+const buttonEditPlace = document.querySelector('.profile__add-button');
+const buttonClosePlace = document.querySelector('.place__close');
+const formPlace = document.querySelector('.form__place');
 
 //создаем функцию добавления карточек, копируем template, наполняем содержимым и отображаем на странице
 initialCards.forEach(item => {
@@ -74,14 +81,6 @@ initialCards.forEach(item => {
     elements.append(userCard); 
  }); 
 
-//функции для popup-place
- let popupPlace = document.querySelector('.popup__place');
- let namePlaceInput = document.querySelector('.form__info_place_name');
- let linkPlaceInput = document.querySelector('.form__info_place_link');
- let buttonEditPlace = document.querySelector('.profile__add-button');
- let buttonClosePlace = document.querySelector('.place__close');
- let formPlace = document.querySelector('.form__place');
-
 //Функциb открывают и закрывают форму места
 function showPopupPlace () {
     popupPlace.classList.add('popup_opened');
@@ -90,28 +89,62 @@ function showPopupPlace () {
     popupPlace.classList.remove('popup_opened'); 
 }
 
+//активизируем лайки
+const cardLikes = elements.querySelectorAll('.card__like');
+
+function addLikes (evt) {
+    evt.target.classList.toggle('card__like_active');  
+}
+
+cardLikes.forEach((cardLike) => cardLike.addEventListener('click', addLikes)); 
+
+//удаляем карточку
+const basketButtons = document.querySelectorAll('.card__delete')
+
+basketButtons.forEach((basketButton) => basketButton.addEventListener('click', function() {
+    const cardUsed = basketButton.closest('.card');
+    cardUsed.remove();
+}));
+ 
+//функции для открытия фото места
+let popupImage = document.querySelector('.popup__image');
+let buttonOpenImages = document.querySelectorAll('.card__image');
+const cardImage = document.querySelector('.image-card');
+const buttonCloseImage = document.querySelector('.image-card__close');
+
+//Нажатие на клик открывает фото места
+function openImagePlace(event) {
+    
+    popupImage.classList.add('popup_opened');
+    const titleImage = (event.target.nextElementSibling).firstElementChild;
+    document.querySelector('.image-card__title').textContent = titleImage.textContent;
+    document.querySelector('.image-card__photo').src = event.target.src;
+};
+
+buttonOpenImages.forEach((buttonOpenImage) => buttonOpenImage.addEventListener('click', openImagePlace));
+buttonCloseImage.addEventListener('click', hidePopupImage); 
+
+//Функция закрывает фото места
+function hidePopupImage () {
+    popupImage.classList.remove('popup_opened'); 
+}  
+
+buttonEditPlace.addEventListener('click', showPopupPlace);
+buttonClosePlace.addEventListener('click', hidePopupPlace); 
+formPlace.addEventListener('submit', handlePlaceSubmit);
+
 //Функция переопределяет стандартное поведение формы, добавляет новую карточку и закрывает форму
 function handlePlaceSubmit (evt) {
     evt.preventDefault();
     const userCard = cardTemplate.querySelector('.card').cloneNode(true);
-    
-    userCard.querySelector('.card__image').src = linkPlaceInput.value;
+    const photoCard = userCard.querySelector('.card__image');
+    photoCard.src = linkPlaceInput.value;
     userCard.querySelector('.card__title').textContent = namePlaceInput.value;
-    
+    userCard.querySelector('.card__like').addEventListener('click', addLikes); 
+    photoCard.addEventListener('click', openImagePlace);
+    userCard.querySelector('.card__delete').addEventListener('click', function() {
+        userCard.remove();
+    });
     elements.prepend(userCard); 
-    hidePopupPlace();    
+    hidePopupPlace();
 }; 
-
- buttonEditPlace.addEventListener('click', showPopupPlace);
- buttonClosePlace.addEventListener('click', hidePopupPlace); 
- formPlace.addEventListener('submit', handlePlaceSubmit);
-
- //активизируем лайки
-const cardLikes = document.querySelectorAll('.card__like');
-
-cardLikes.forEach((cardLike) => cardLike.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('card__like_active');  
-})); 
-
-
-  
