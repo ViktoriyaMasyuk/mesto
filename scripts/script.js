@@ -64,12 +64,12 @@ const initialCards = [
 const elements = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card').content;
 //функции для popup-place
-const popupPlace = document.querySelector('.popup__place');
+const popupPlace = document.querySelector('.popup-place');
 const namePlaceInput = document.querySelector('.form__info_place_name');
 const linkPlaceInput = document.querySelector('.form__info_place_link');
 const buttonEditPlace = document.querySelector('.profile__add-button');
-const buttonClosePlace = document.querySelector('.place__close');
-const formPlace = document.querySelector('.form__place');
+const buttonClosePlace = document.querySelector('.form-place__close');
+const formPlace = document.querySelector('.form-place');
 
 //создаем функцию добавления карточек, копируем template, наполняем содержимым и отображаем на странице
 initialCards.forEach(item => {
@@ -107,7 +107,7 @@ basketButtons.forEach((basketButton) => basketButton.addEventListener('click', f
 }));
  
 //функции для открытия фото места
-let popupImage = document.querySelector('.popup__image');
+let popupImage = document.querySelector('.popup-image');
 let buttonOpenImages = document.querySelectorAll('.card__image');
 const cardImage = document.querySelector('.image-card');
 const buttonCloseImage = document.querySelector('.image-card__close');
