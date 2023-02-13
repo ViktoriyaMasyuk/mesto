@@ -24,7 +24,6 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__save/form__save.css);
-@import url(../blocks/form/__personal-info/form__personal-info.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/card/__name/card__name.css);
@@ -38,4 +37,3 @@
 @import url(../blocks/image-card/__title/image-card__title.css);
 @import url(../blocks/image-card/__photo/image-card__photo.css);
 @import url(../blocks/image-card/__close/image-card__close.css);
-@import url(../blocks/popup/__place/popup__place.css);

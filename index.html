@@ -41,21 +41,21 @@
         <footer class="footer">
             <p>© 2020 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup profile-popup">
             <div class="popup__container">
-               <form class="form" method="get" name="profile-info">
-                   <button class="form__close button-hover" type="button"></button>
+               <form class="form form-profile" method="get" name="profile-info">
+                   <button class="form__close popup__close button-hover" type="button"></button>
                    <h2 class="form__title">Редактировать профиль</h2>
-                   <input class="form__personal-info form__personal-info_user_name" name="name" type="text" size="15" maxlength="25" value="Жак-Ив Кусто">
-                   <input class="form__personal-info form__personal-info_user_job" name="profession" type="text" size="25" maxlength="28" value="Исследователь океана">
+                   <input class="form__info form__info_user_name" name="name" type="text" size="15" maxlength="25" value="Жак-Ив Кусто">
+                   <input class="form__info form__info_user_job" name="profession" type="text" size="25" maxlength="28" value="Исследователь океана">
                    <button class="form__save" type="submit">Сохранить</button>
                </form>
             </div>
         </div>
-        <div class="popup popup-place">
+        <div class="popup place-popup">
             <div class="popup__container">
                 <form class="form form-place" method="get" name="place-info">
-                    <button class="form__close button-hover form-place__close" type="button"></button>
+                    <button class="form__close popup__close button-hover" type="button"></button>
                     <h2 class="form__title">Новое место</h2>
                     <input class="form__info form__info_place_name" name="name" type="text" size="15" maxlength="25" placeholder="Название" value="">
                     <input class="form__info form__info_place_link" name="link" type="text" size="25" maxlength="150" placeholder="Сcылка на картинку" value="">
@@ -63,9 +63,9 @@
                 </form>
             </div>
         </div>
-        <div class="popup popup-image">
+        <div class="popup image-popup">
             <article class="image-card">
-                <button class="image-card__close button-hover" type="button"></button>
+                <button class="image-card__close popup__close button-hover" type="button"></button>
                 <img class="image-card__photo" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="Фото посещенного места">
                 <h2 class="image-card__title">Байкал</h2>
             </article>
