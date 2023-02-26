@@ -2,7 +2,7 @@ const enableValidation = {
     formSelector: '.form',
     fieldsetList: '.form__set',
     submitButtonSelector: '.form__save',
-    inactiveButtonClass: '.form__save_inactive',
+    inactiveButtonClass: 'form__save_inactive',
     inputSelector: '.form__info',
     inputErrorClass: 'form__input_type_error',
     inputActiveClass: 'form__input-error_active',
