@@ -43,23 +43,31 @@
         </footer>
         <div class="popup profile-popup">
             <div class="popup__container">
-               <form class="form form-profile" method="get" name="profile-info">
-                   <button class="form__close popup__close button-hover" type="button"></button>
-                   <h2 class="form__title">Редактировать профиль</h2>
-                   <input class="form__info form__info_user_name" name="name" type="text" size="15" maxlength="25" value="Жак-Ив Кусто">
-                   <input class="form__info form__info_user_job" name="profession" type="text" size="25" maxlength="28" value="Исследователь океана">
-                   <button class="form__save" type="submit">Сохранить</button>
-               </form>
+                <form class="form form-profile" method="get" name="profile-info" novalidate>
+                    <button class="form__close popup__close button-hover" type="button"></button>
+                    <fieldset class="form__set">
+                        <h2 class="form__title">Редактировать профиль</h2>
+                        <input class="form__info form__info_user_name form__info_name-input" name="name" id="name-input" type="text" size="15" minlength="2" maxlength="40" required value="Жак-Ив Кусто">
+                        <span class="form__input-error name-input-error"></span>
+                        <input class="form__info form__info_user_job form__info_job-input" name="profession" id="job-input" type="text" size="25" minlength="2" maxlength="200" required value="Исследователь океана">
+                        <span class="form__input-error job-input-error"></span>
+                        <button class="form__save form__submit" type="submit">Сохранить</button>
+                    </fieldset>
+                </form>
             </div>
         </div>
-        <div class="popup place-popup">
+        <div class="popup place-popup" id="place">
             <div class="popup__container">
-                <form class="form form-place" method="get" name="place-info">
+                <form class="form form-place" method="get" name="place-info" novalidate>
                     <button class="form__close popup__close button-hover" type="button"></button>
-                    <h2 class="form__title">Новое место</h2>
-                    <input class="form__info form__info_place_name" name="name" type="text" size="15" maxlength="25" placeholder="Название" value="">
-                    <input class="form__info form__info_place_link" name="link" type="text" size="25" maxlength="150" placeholder="Сcылка на картинку" value="">
-                    <button class="form__save" type="submit">Создать</button>
+                    <fieldset class="form__set">
+                        <h2 class="form__title">Новое место</h2>
+                        <input class="form__info form__info_place_name form__info_place-input" name="name" id="place-input" type="text" size="15" minlength="2" maxlength="30" required placeholder="Название" value="">
+                        <span class="form__input-error place-input-error"></span>
+                        <input class="form__info form__info_place_link form__info_email-input" name="link" id="email-input" type="url" size="25" required placeholder="Сcылка на картинку" value="">
+                        <span class="form__input-error email-input-error"></span>
+                        <button class="form__save form__submit" type="submit">Создать</button>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -72,5 +80,6 @@
         </div>
     </div>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>

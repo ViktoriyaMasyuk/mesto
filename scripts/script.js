@@ -15,7 +15,7 @@ const formPlace = document.querySelector('.form-place');
 const imagePopup = document.querySelector('.image-popup');
 const titleImagePopup = document.querySelector('.image-card__title');
 const photoImagePopup = document.querySelector('.image-card__photo');
-
+const popup = document.querySelector('.popup');
 //массив карточек
 const initialCards = [
     {
@@ -56,6 +56,23 @@ closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+//функция закрытия попапа кнопкой ecs
+function keyEsc(evt) {
+  if (evt.key === 'Escape') {
+    const escPopups = document.querySelectorAll('.popup');
+    escPopups.forEach((escPopup) => {
+    closePopup(escPopup);
+  });
+};
+};
+
+//Функция закрытия попап кликом по докупменту за границами попапа
+function keyOverlay(event) {
+  if (event.target.classList.contains('popup_opened')) {
+    closePopup(event.target);
+  };
+};
+
 //Функция поведения формы профиля
 function openProfilePopup () {
     openPopup (profilePopup);
@@ -75,7 +92,7 @@ function openPlacePopup () {
 //открытие popup фотографии
 function openImagePopup(event) {
     openPopup (imagePopup);
-    const titleImage = (event.target.nextElementSibling).firstElementChild;
+    const titleImage = ((event.target).closest('.card')).querySelector('.card__title');
     titleImagePopup.textContent = titleImage.textContent;
     photoImagePopup.src = event.target.src;
     event.target.setAttribute('alt', titleImagePopup);
@@ -121,3 +138,5 @@ buttonEditProfile.addEventListener('click', openProfilePopup);
 profileForm.addEventListener('submit', handleProfileSubmit);
 buttonEditPlace.addEventListener('click', openPlacePopup);
 formPlace.addEventListener('submit', handlePlaceSubmit);
+document.addEventListener ('keyup', keyEsc);
+document.addEventListener ('click', keyOverlay);
