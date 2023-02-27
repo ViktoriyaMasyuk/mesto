@@ -15,7 +15,8 @@ const formPlace = document.querySelector('.form-place');
 const imagePopup = document.querySelector('.image-popup');
 const titleImagePopup = document.querySelector('.image-card__title');
 const photoImagePopup = document.querySelector('.image-card__photo');
-const popup = document.querySelector('.popup');
+const openedPopup = document.querySelector('.popup_opened');
+const buttonPlaceSubmit = placePopup.querySelector('.form__submit');
 //массив карточек
 const initialCards = [
     {
@@ -46,9 +47,11 @@ const initialCards = [
 //Функция открытия и закрытия popup
 function openPopup (popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
 } 
 function closePopup (popup) {
-    popup.classList.remove('popup_opened'); 
+    popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape);
 }
 // закрываем все popup
 const closeButtons = document.querySelectorAll('.popup__close');
@@ -57,17 +60,15 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 //функция закрытия попапа кнопкой ecs
-function keyEsc(evt) {
+function closeByEscape(evt) {
   if (evt.key === 'Escape') {
-    const escPopups = document.querySelectorAll('.popup');
-    escPopups.forEach((escPopup) => {
-    closePopup(escPopup);
-  });
-};
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  };
 };
 
 //Функция закрытия попап кликом по докупменту за границами попапа
-function keyOverlay(event) {
+function closeByOverlay(event) {
   if (event.target.classList.contains('popup_opened')) {
     closePopup(event.target);
   };
@@ -88,6 +89,8 @@ function handleProfileSubmit (evt) {
 //Функции открытия формы места
 function openPlacePopup () {
     openPopup(placePopup);
+    buttonPlaceSubmit.setAttribute('disabled', 'disabled');
+    buttonPlaceSubmit.classList.add('form__save_inactive');
 } 
 //открытие popup фотографии
 function openImagePopup(event) {
@@ -138,5 +141,4 @@ buttonEditProfile.addEventListener('click', openProfilePopup);
 profileForm.addEventListener('submit', handleProfileSubmit);
 buttonEditPlace.addEventListener('click', openPlacePopup);
 formPlace.addEventListener('submit', handlePlaceSubmit);
-document.addEventListener ('keyup', keyEsc);
-document.addEventListener ('click', keyOverlay);
+document.addEventListener ('click', closeByOverlay);
