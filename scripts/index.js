@@ -1,4 +1,4 @@
-import { initialCards, basicCard } from './card.js'; 
+import { initialCards, Card } from './card.js'; 
 import { closePopup } from './utils.js';
 import { FormValidator, settings } from './formValidator.js'
 
@@ -8,12 +8,16 @@ const linkPlaceInput = document.querySelector('.form__info_place_link');
 const elements = document.querySelector('.elements');
 const placePopup = document.querySelector('.place-popup');
 
+//Функция создания карточки
+function createCard(item) {
+    const card = new Card(item, '#card');
+    const cardElement = card.generateCard();
+    return cardElement
+}
 //Функция добавляет новую карточку и закрывает форму
 function handlePlaceSubmit (evt) {
     evt.preventDefault();
-    const card = new basicCard({name: namePlaceInput.value, link: linkPlaceInput.value, alt: namePlaceInput.value}, '#card');
-    const cardElement = card.generateCard();
-    elements.prepend(cardElement); 
+    elements.prepend(createCard({name: namePlaceInput.value, link: linkPlaceInput.value, alt: namePlaceInput.value}));
     closePopup(placePopup);
     evt.target.reset()
   }; 
@@ -21,10 +25,10 @@ function handlePlaceSubmit (evt) {
 formPlace.addEventListener('submit', handlePlaceSubmit);
 
 initialCards.forEach((item) => {
-    const card = new basicCard(item, '#card');
-    const cardElement = card.generateCard();
-    elements.append(cardElement);
+    elements.append(createCard(item));
 });
 
-new FormValidator(settings, '.form-place').enableValidation()
-new FormValidator(settings, '.form-profile').enableValidation()
+export const placeValidator = new FormValidator(settings, '.form-place');
+export const profileValidator = new FormValidator(settings, '.form-profile');
+placeValidator.enableValidation();
+profileValidator.enableValidation();

@@ -56,6 +56,12 @@ export class FormValidator {
             setTimeout(() => 
             this._toggleButtonState(this._inputFields, this._buttonSubmit), 0 )});  
     };
+    resetValidation() {
+        this._toggleButtonState(this._inputFields, this._buttonSubmit);
+        this._inputFields.forEach((inputElement) => {
+          this._hideInputError(inputElement)
+        });
+    };
 
     enableValidation() {
         this._formToValidate.addEventListener('submit', (evt) => {
@@ -80,6 +86,5 @@ export class FormValidator {
           buttonElement.removeAttribute("disabled", "disabled");
         }
     }; 
-    
 }
 

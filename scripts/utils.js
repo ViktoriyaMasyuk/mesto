@@ -1,3 +1,5 @@
+import { placeValidator, profileValidator } from './index.js';
+
 const profilePopup = document.querySelector('.profile-popup');
 const nameInput = document.querySelector('.form__info_user_name');
 const jobInput = document.querySelector('.form__info_user_job');
@@ -10,7 +12,6 @@ const buttonEditPlace = document.querySelector('.profile__add-button');
 const imagePopup = document.querySelector('.image-popup');
 const titleImagePopup = document.querySelector('.image-card__title');
 const photoImagePopup = document.querySelector('.image-card__photo');
-const buttonPlaceSubmit = placePopup.querySelector('.form__submit');
 
 //Функция открытия и закрытия popup
 function openPopup(popup) {
@@ -42,9 +43,11 @@ function closeByOverlay(evt) {
 };
 //Функция поведения формы профиля
 function openProfilePopup () {
+  profileValidator.resetValidation();
   openPopup (profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  
 }
 function handleProfileSubmit (evt) {
   evt.preventDefault();
@@ -54,9 +57,8 @@ function handleProfileSubmit (evt) {
 }
 //Функции открытия формы места
 function openPlacePopup () {
+  placeValidator.resetValidation();
   openPopup(placePopup);
-  buttonPlaceSubmit.setAttribute('disabled', 'disabled');
-  buttonPlaceSubmit.classList.add('form__save_inactive');
 } 
 //открытие popup фотографии
 export function openImagePopup(card) {
@@ -70,6 +72,5 @@ export function openImagePopup(card) {
 buttonEditProfile.addEventListener('click', openProfilePopup);
 profileForm.addEventListener('submit', handleProfileSubmit);
 buttonEditPlace.addEventListener('click', openPlacePopup);
-//formPlace.addEventListener('submit', handlePlaceSubmit);
 document.addEventListener ('click', closeByOverlay);
 
