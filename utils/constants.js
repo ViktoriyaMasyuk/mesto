@@ -36,8 +36,6 @@ export const settings = {
 
 export const elements = document.querySelector('.elements');
 export const imagePopup = document.querySelector('.image-popup');
-export const titleImagePopup = document.querySelector('.image-card__title');
-export const photoImagePopup = document.querySelector('.image-card__photo');
 export const form = document.querySelector('.form-place');
 export const placePopup = document.querySelector('.place-popup');
 export const profilePopup = document.querySelector('.profile-popup');

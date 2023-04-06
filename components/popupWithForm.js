@@ -2,8 +2,8 @@ import Popup from "./popup.js";
 import { buttonEditPlace } from "../utils/constants.js";
 
 export default  class PopupWithForm extends Popup {
-    constructor(popupSelector, handleSubmit, form) {
-        super(popupSelector);
+    constructor(popupElement, handleSubmit, form) {
+        super(popupElement);
         this._form = form;
         this._handleSubmit = handleSubmit;
         this._inputs = this._form.querySelectorAll('.form__info');
@@ -18,9 +18,6 @@ export default  class PopupWithForm extends Popup {
         });
         return this._formValues;
     }
-    getValues() { 
-        return this._getInputValues()
-    };
 
     setEventListeners() {
         //добавлять обработчик сабмита формы.

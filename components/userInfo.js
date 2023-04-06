@@ -5,10 +5,8 @@ export default class UserInfo {
 
     }
 
-    getUserInfo(nameInput, jobInput) {
+    getUserInfo() {
     //который возвращает объект с данными пользователя
-    nameInput.value = this._nameInfo.textContent
-    jobInput.value = this._jobInfo.textContent
     return {
         name: this._nameInfo.textContent,
         profession: this._jobInfo.textContent
