@@ -66,9 +66,9 @@ const user = new UserInfo(profileName, profileJob);
 
 buttonEditProfile.addEventListener('click', () => {
   profileValidator.resetValidation();
-  user.getUserInfo();
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  const profileInfo = user.getUserInfo();
+  nameInput.value = profileInfo.name;
+  jobInput.value = profileInfo.profession;
   popupProfileForm.open();
 });
 

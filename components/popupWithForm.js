@@ -1,5 +1,4 @@
 import Popup from "./popup.js";
-import { buttonEditPlace } from "../utils/constants.js";
 
 export default  class PopupWithForm extends Popup {
     constructor(popupElement, handleSubmit, form) {
@@ -7,7 +6,6 @@ export default  class PopupWithForm extends Popup {
         this._form = form;
         this._handleSubmit = handleSubmit;
         this._inputs = this._form.querySelectorAll('.form__info');
-        this._buttonSubmit = buttonEditPlace
     }
 
     _getInputValues() {
