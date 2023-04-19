@@ -18,10 +18,10 @@
         <main>
             <section class="profile">
                     <div class="profile__info">
-                        <img class="profile__avatar" src="<%=require('./images/image.png')%>" alt="Фото профиля">
-                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button class="profile__button"><img class="profile__avatar" src="" alt="Фото профиля"></button>
+                        <h1 class="profile__title"></h1>
                         <button class="profile__edit-button button-hover" type="button"></button>
-                        <p class="profile__subtitle">Исследователь океана</p>
+                        <p class="profile__subtitle"></p>
                     </div>
                     <button class="profile__add-button" type="button"></button>
             </section>
@@ -32,7 +32,10 @@
                         <img class="card__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="Фото посещенного места">
                         <div class="card__name">
                             <h2 class="card__title"></h2>
-                            <button class="card__like" type="button"></button>
+                            <div class="card__likes">
+                                <button class="card__like" type="button"></button>
+                                <h4 class="card__count-likes"></h4>
+                            </div>
                         </div>
                     </article>
                 </template>
@@ -78,15 +81,26 @@
                 <h2 class="image-card__title">Байкал</h2>
             </article>
         </div>
+        <div class="popup basket-popup" id="delete">
+            <div class="form popup__container delete-card">
+                <button class="popup__close form__close button-hover" type="button"></button>
+                <h2 class="delete-card__title">Вы уверены?</h2>
+                <button class="form__save form__submit delete-card__submit" type="submit">Да</button>
+            </div>
+        </div>
+        <div class="popup update-avatar" id="update-avatar">
+            <div class="popup__container">
+                <form class="form form-profile form_avatar" method="get" name="profile-info" novalidate>
+                <button class="popup__close form__close button-hover" type="button"></button>
+                    <fieldset class="form__set">
+                        <h2 class="form__title">Обновить аватар</h2>
+                        <input class="form__info update-avatar__input form__info_avatar_link form__info_avatar-input" name="avatar-link" id="avatar-input" type="url" size="25" required placeholder="" value="https://somewebsite.com/someimage.jpg">
+                        <span class="form__input-error avatar-input-error"></span>
+                        <button class="form__save form__submit" type="submit">Сохранить</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- <script type="module" src="./pages/index.js"></script> -->
-    <!-- <script type="module" src="./components/formValidator.js"></script>
-    <script type="module" src="./components/card.js"></script>
-    <script type="module" src="./components/popup.js"></script>
-    <script type="module" src="./components/popupWithForm.js"></script>
-    <script type="module" src="./components/popupWithImage.js"></script>
-    <script type="module" src="./components/userInfo.js"></script>
-    <script type="module" src="./components/section.js"></script>
-    <script type="module" src="./utils/constants.js"></script> -->
 </body>
 </html>

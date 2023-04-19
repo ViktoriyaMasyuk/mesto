@@ -1,30 +1,3 @@
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
-
 export const settings = {
   submitButtonSelector: '.form__save',
   inactiveButtonClass: 'form__save_inactive',
@@ -36,6 +9,7 @@ export const settings = {
 
 export const elements = document.querySelector('.elements');
 export const imagePopup = document.querySelector('.image-popup');
+export const basketPopup = document.querySelector('.basket-popup');
 export const form = document.querySelector('.form-place');
 export const placePopup = document.querySelector('.place-popup');
 export const profilePopup = document.querySelector('.profile-popup');
@@ -47,3 +21,5 @@ export const nameInput = document.querySelector('#name-input');
 export const jobInput = document.querySelector('#job-input');
 export const profileName = document.querySelector('.profile__title');
 export const profileJob = document.querySelector('.profile__subtitle');
+export const buttonDeleteCard = document.querySelector('.delete-card__submit');
+export const avatarPopup = document.querySelector('.update-avatar');
