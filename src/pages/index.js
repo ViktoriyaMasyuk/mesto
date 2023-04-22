@@ -17,14 +17,14 @@ import {
   buttonDeleteCard,
   avatarPopup,
   avatarImage,
-} from "../../utils/constants.js";
-import FormValidator from "../../components/formValidator.js";
-import Card from "../../components/card.js";
-import Section from "../components/section.js";
-import PopupWithImage from "../../components/popupWithImage.js";
-import PopupWithForm from "../../components/popupWithForm.js";
-import PopupWithSubmit from "../../components/popupWithSubmit.js";
-import UserInfo from "../../components/userInfo.js";
+} from "../utils/constants";
+import FormValidator from "../components/FormValidator";
+import Card from "../components/Card";
+import Section from "../components/Section";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
+import UserInfo from "../components/UserInfo";
 import Api from "../components/Api";
 
 /**Функция создания карточки*/
@@ -33,7 +33,7 @@ function createCard(cardData) {
     cardData,
     "#card",
     handleCardClick,
-    api.getUser,
+    user.getUser(),
     handleCardDelete,
     toggleLike
   );
@@ -49,12 +49,12 @@ const api = new Api({
 });
 
 /**создание секции карточек*/
-let cardsSection;
+let cardsSection = new Section();
 
 api
   .getInitialCards()
   .then((result) => {
-    cardsSection = new Section(
+    cardsSection.renderItems(
       {
         data: result,
         renderer: (cardData) => {
@@ -64,7 +64,6 @@ api
       },
       cardsContainer
     );
-    cardsSection.renderItems();
   })
   .catch((err) => {
     console.log(err);
@@ -76,12 +75,6 @@ function handleCardClick(name, link) {
 }
 const popupImage = new PopupWithImage(imagePopup);
 popupImage.setEventListeners();
-
-/**открытие попапа формы добавления карточек*/
-buttonEditPlace.addEventListener("click", () => {
-  placeValidator.resetValidation();
-  popupPlaceForm.open();
-});
 
 /**закрытие попапа и добавление карточки*/
 const popupPlaceForm = new PopupWithForm(
@@ -108,6 +101,7 @@ const user = new UserInfo(profileName, profileJob, avatarImage);
 api
   .getUserInfo()
   .then((result) => {
+    user.saveUser(result);
     user.setUserInfo({
       name: result.name,
       profession: result.about,
@@ -118,28 +112,25 @@ api
     console.log(err);
   });
 
-buttonEditProfile.addEventListener("click", () => {
-  profileValidator.resetValidation();
-  const profileInfo = user.getUserInfo();
-  nameInput.value = profileInfo.name;
-  jobInput.value = profileInfo.profession;
-  popupProfileForm.open();
-});
-
 const popupProfileForm = new PopupWithForm(profilePopup, (data) => {
-  renderLoading(true, profilePopup);
+  renderLoading(true, popupProfileForm);
   api
     .updateUserInfo({ name: data.name, about: data.profession })
     .then((result) => {
-      api.getUserInfo();
-      user.setUserInfo(data);
+      user.getUser();
+
+      user.setUserInfo({
+        name: result.name,
+        profession: result.about,
+        avatar: result.avatar,
+      });
       popupProfileForm.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, profilePopup);
+      renderLoading(false, popupProfileForm);
     });
 });
 
@@ -147,36 +138,33 @@ popupProfileForm.setEventListeners();
 
 /** Изменение аватара*/
 const avatarChangePopup = new PopupWithForm(avatarPopup, (url) => {
-  renderLoading(true, avatarPopup);
+  renderLoading(true, avatarChangePopup);
   api
     .changeAvatar(url["avatar-link"])
     .then((result) => {
-      user.getUserInfo();
+      console.log(result);
+      user.setAvatarLink(url["avatar-link"]);
       avatarChangePopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, avatarPopup);
+      renderLoading(false, avatarChangePopup);
     });
 });
 avatarChangePopup.setEventListeners();
-
-avatarImage.addEventListener("click", () => {
-  avatarChangePopup.open();
-});
 
 /**попап удаления карточек*/
 const popupDeleteForm = new PopupWithSubmit(basketPopup);
 popupDeleteForm.setEventListeners();
 
 /**функция удаление карточки*/
+
 function handleCardDelete(card) {
-  popupDeleteForm.open();
-  buttonDeleteCard.addEventListener("click", () => {
+  popupDeleteForm.setCallback(() => {
     api
-      .deleteCard(card._id)
+      .deleteCard(card.getId())
       .then(() => {
         card.deleteCard();
         popupDeleteForm.close();
@@ -185,35 +173,12 @@ function handleCardDelete(card) {
         console.log(`${err}`);
       });
   });
+  popupDeleteForm.open();
 }
 
 /**функция постановки лайков*/
-// function toggleLike(card) {
-//   if (card.isUserLiked()) {
-//     api
-//       .unsetLike(card.getId())
-//       .then(() => {
-//         card.changeCountLikes(-1);
-//         card.removeLike();
-//       })
-//       .catch((err) => {
-//         console.log(`${err}`);
-//       });
-//   } else {
-//     api
-//       .setLike(card.getId())
-//       .then(() => {
-//         card.changeCountLikes(1);
-//         card.addLike();
-//       })
-//       .catch((err) => {
-//         console.log(`${err}`);
-//       });
-//   }
-// }
 
 function toggleLike(card) {
-  console.log(card.isUserLiked());
   if (card.isUserLiked()) {
     api
       .unsetLike(card.getId())
@@ -235,14 +200,31 @@ function toggleLike(card) {
   }
 }
 
+/**открытие попапа формы добавления карточек*/
+buttonEditPlace.addEventListener("click", () => {
+  placeValidator.resetValidation();
+  popupPlaceForm.open();
+});
+
+buttonEditProfile.addEventListener("click", () => {
+  profileValidator.resetValidation();
+  const profileInfo = user.getUserInfo();
+  nameInput.value = profileInfo.name;
+  jobInput.value = profileInfo.profession;
+  popupProfileForm.open();
+});
+
+avatarImage.addEventListener("click", () => {
+  avatarChangePopup.open();
+});
+
 /**функция сохранения изменений*/
 function renderLoading(isLoading, popupForm) {
-  const button = popupForm.querySelector(".form__submit");
   if (isLoading) {
-    button.textContent = "Сохранение...";
-    //console.log(button.textContent);
+    popupForm.setSubmitButtonText("Сохранение...");
+    console.log(popupForm.setSubmitButtonText);
   } else {
-    button.textContent = "Сохранить";
+    popupForm.setSubmitButtonText("Сохранить");
   }
 }
 
