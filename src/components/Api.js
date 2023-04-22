@@ -15,7 +15,7 @@ export default class Api {
       headers: this.headers,
     }).then(this._getResponse);
   }
-  
+
   getInitialCards() {
     return fetch(`${this.url}cards/`, {
       headers: this.headers,

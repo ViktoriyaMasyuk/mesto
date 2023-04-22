@@ -14,7 +14,6 @@ import {
   jobInput,
   profileName,
   profileJob,
-  buttonDeleteCard,
   avatarPopup,
   avatarImage,
 } from "../utils/constants";
@@ -50,13 +49,21 @@ const api = new Api({
 
 /**создание секции карточек*/
 let cardsSection = new Section();
+/**открытие попапа профиля*/
+const user = new UserInfo(profileName, profileJob, avatarImage);
 
-api
-  .getInitialCards()
-  .then((result) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then((values) => {
+    console.log(values);
+    user.saveUser(values[0]);
+    user.setUserInfo({
+      name: values[0].name,
+      profession: values[0].about,
+      avatar: values[0].avatar,
+    });
     cardsSection.renderItems(
       {
-        data: result,
+        data: values[1],
         renderer: (cardData) => {
           const cardElement = createCard(cardData);
           cardsSection.addItem(cardElement);
@@ -94,23 +101,6 @@ const popupPlaceForm = new PopupWithForm(
   placeForm
 );
 popupPlaceForm.setEventListeners();
-
-/**открытие попапа профиля*/
-const user = new UserInfo(profileName, profileJob, avatarImage);
-
-api
-  .getUserInfo()
-  .then((result) => {
-    user.saveUser(result);
-    user.setUserInfo({
-      name: result.name,
-      profession: result.about,
-      avatar: result.avatar,
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 const popupProfileForm = new PopupWithForm(profilePopup, (data) => {
   renderLoading(true, popupProfileForm);
