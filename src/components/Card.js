@@ -33,6 +33,7 @@ export default class Card {
     //попробовала добавить в Section новый метод удаления и передавать тут же.
     //Но в таком случае код становится более громозким.
     this._element.remove();
+    this._element = null;
   }
   //лайки
   toggleLike() {

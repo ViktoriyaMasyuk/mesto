@@ -31,8 +31,5 @@ export default class Popup {
       .addEventListener("click", () => this.close());
     this._popupElement.addEventListener("click", this._handleOverlayClose);
   }
-  setSubmitButtonText(buttonText) {
-    this._buttonText = this._popupElement.querySelector(".form__submit");
-    this._buttonText.textContent = buttonText;
-  }
+
 }

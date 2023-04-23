@@ -31,7 +31,7 @@ function createCard(cardData) {
   const card = new Card(
     cardData,
     "#card",
-    handleCardClick,
+    openImagePopup,
     user.getUser(),
     handleCardDelete,
     toggleLike
@@ -48,36 +48,29 @@ const api = new Api({
 });
 
 /**создание секции карточек*/
-let cardsSection = new Section();
+const cardsSection = new Section((cardData) => {
+  const cardElement = createCard(cardData);
+  cardsSection.addItem(cardElement);
+}, cardsContainer);
 /**открытие попапа профиля*/
 const user = new UserInfo(profileName, profileJob, avatarImage);
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then((values) => {
-    console.log(values);
-    user.saveUser(values[0]);
+  .then(([userInfo, cards]) => {
+    user.setUser(userInfo);
     user.setUserInfo({
-      name: values[0].name,
-      profession: values[0].about,
-      avatar: values[0].avatar,
+      name: userInfo.name,
+      profession: userInfo.about,
+      avatar: userInfo.avatar,
     });
-    cardsSection.renderItems(
-      {
-        data: values[1],
-        renderer: (cardData) => {
-          const cardElement = createCard(cardData);
-          cardsSection.addItem(cardElement);
-        },
-      },
-      cardsContainer
-    );
+    cardsSection.renderItems(cards);
   })
   .catch((err) => {
     console.log(err);
   });
 
 /**открытие попапа изображений*/
-function handleCardClick(name, link) {
+function openImagePopup(name, link) {
   popupImage.open(name, link);
 }
 const popupImage = new PopupWithImage(imagePopup);
@@ -86,17 +79,17 @@ popupImage.setEventListeners();
 /**закрытие попапа и добавление карточки*/
 const popupPlaceForm = new PopupWithForm(
   placePopup,
-  (cardCreatedPopup) => {
+  (cardData) => {
     api
-      .addNewCard(cardCreatedPopup)
+      .addNewCard(cardData)
       .then((result) => {
         const cardElement = createCard(result);
         cardsSection.prependItem(cardElement);
+        popupPlaceForm.close();
       })
       .catch((err) => {
         console.log(err);
       });
-    popupPlaceForm.close();
   },
   placeForm
 );
@@ -107,8 +100,6 @@ const popupProfileForm = new PopupWithForm(profilePopup, (data) => {
   api
     .updateUserInfo({ name: data.name, about: data.profession })
     .then((result) => {
-      user.getUser();
-
       user.setUserInfo({
         name: result.name,
         profession: result.about,
@@ -212,7 +203,6 @@ avatarImage.addEventListener("click", () => {
 function renderLoading(isLoading, popupForm) {
   if (isLoading) {
     popupForm.setSubmitButtonText("Сохранение...");
-    console.log(popupForm.setSubmitButtonText);
   } else {
     popupForm.setSubmitButtonText("Сохранить");
   }

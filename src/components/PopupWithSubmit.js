@@ -21,4 +21,8 @@ export default class PopupWithSubmit extends Popup {
       this._handleSubmit();
     });
   }
+  setSubmitButtonText(buttonText) {
+    this._buttonSubmit = this._popupElement.querySelector(".form__submit");
+    this._buttonSubmit.textContent = buttonText;
+  }
 }
