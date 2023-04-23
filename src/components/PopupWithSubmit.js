@@ -6,6 +6,7 @@ export default class PopupWithSubmit extends Popup {
     super(popupElement);
     this._form = popupElement.querySelector(".form__save");
     this._buttonDeleteCard = buttonDeleteCard;
+    this._buttonSubmit = this._popupElement.querySelector(".form__submit");
   }
 
   setCallback(handleSubmit) {
@@ -22,7 +23,6 @@ export default class PopupWithSubmit extends Popup {
     });
   }
   setSubmitButtonText(buttonText) {
-    this._buttonSubmit = this._popupElement.querySelector(".form__submit");
     this._buttonSubmit.textContent = buttonText;
   }
 }

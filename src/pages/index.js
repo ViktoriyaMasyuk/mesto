@@ -96,7 +96,7 @@ const popupPlaceForm = new PopupWithForm(
 popupPlaceForm.setEventListeners();
 
 const popupProfileForm = new PopupWithForm(profilePopup, (data) => {
-  renderLoading(true, popupProfileForm);
+  popupProfileForm.setSubmitButtonText("Сохранение...");
   api
     .updateUserInfo({ name: data.name, about: data.profession })
     .then((result) => {
@@ -111,7 +111,7 @@ const popupProfileForm = new PopupWithForm(profilePopup, (data) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, popupProfileForm);
+      popupProfileForm.setSubmitButtonText("Сохранить");;
     });
 });
 
@@ -119,7 +119,7 @@ popupProfileForm.setEventListeners();
 
 /** Изменение аватара*/
 const avatarChangePopup = new PopupWithForm(avatarPopup, (url) => {
-  renderLoading(true, avatarChangePopup);
+  avatarChangePopup.setSubmitButtonText("Сохранение...");;
   api
     .changeAvatar(url["avatar-link"])
     .then((result) => {
@@ -131,7 +131,7 @@ const avatarChangePopup = new PopupWithForm(avatarPopup, (url) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, avatarChangePopup);
+      avatarChangePopup.setSubmitButtonText("Сохранить");;
     });
 });
 avatarChangePopup.setEventListeners();
@@ -198,15 +198,6 @@ buttonEditProfile.addEventListener("click", () => {
 avatarImage.addEventListener("click", () => {
   avatarChangePopup.open();
 });
-
-/**функция сохранения изменений*/
-function renderLoading(isLoading, popupForm) {
-  if (isLoading) {
-    popupForm.setSubmitButtonText("Сохранение...");
-  } else {
-    popupForm.setSubmitButtonText("Сохранить");
-  }
-}
 
 export const placeValidator = new FormValidator(
   validationSettings,
